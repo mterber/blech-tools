@@ -2,23 +2,22 @@
 
 This repository comprises tools in the context of the Blech language and compiler (See: http://blech-lang.org)
 Currently, the following tools are available:
-* `ide/` - Integrated Development Environment plugin
+* `ide/` - Integrated Development Environment plugin for the Visual Studio Code (https://code.visualstudio.com/)
 
-## Cloning this repository
+## Working with the repository
+The sources of the Blech compiler are required for building the Blech tools. For this reason, the Blech compiler repository is added as a submodule. Consequently, you always have to clone and update recursively to make sure that the dependent sources are available and up-to-date.
 
-This repository contains the source of the Blech compiler as its submodule.
+### Clone
+In order to initially clone this repository just run
 
-Therefore clone with
 ```
 git clone --recurse-submodules https://github.com/boschresearch/blech-tools.git
 ```
 
-In order to update the Blech compilers sources, go into the subfolder ```./blech```. 
-Update the ```blech``` submodule.
-
+### Update
+In order to update this repository with the latest changes from the remote just run
 ```
-cd blech
-git pull
+git pull --recurse-submodules
 ```
 
 ## License
