@@ -4,9 +4,9 @@
 		"body": [
 			"struct ${1:NewStruct}",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "Struct",
+		"description": "Struct"
 	},
 	
 	"Activity": {
@@ -14,9 +14,9 @@
 		"body": [
 			"activity ${1:NewActivity} ($2) ($3)",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "Activity",
+		"description": "Activity"
 	},
 
 	"EntryPoint": {
@@ -25,9 +25,9 @@
 			"@[EntryPoint]",
 			"activity ${1:Main} ($2) ($3)",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "EntryPoint",
+		"description": "EntryPoint"
 	},
 
 	"Cobegin": {
@@ -37,9 +37,9 @@
 			"\t${1:await true}",
 			"with",
 			"\t${2:await true}",
-			"end",
+			"end"
 		],
-		"description": "Cobegin",
+		"description": "Cobegin"
 	},
 
 	"IfThen": {
@@ -47,9 +47,9 @@
 		"body": [
 			"if ${1:} then",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "IfThen",
+		"description": "IfThen"
 	},
 
 	"IfThenElse": {
@@ -59,9 +59,9 @@
 			"\t$2",
 			"else",
 			"\t$3",
-			"end",
+			"end"
 		],
-		"description": "IfThenElse",
+		"description": "IfThenElse"
 	},
 
 	"Repeat": {
@@ -69,19 +69,19 @@
 		"body": [
 			"repeat",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "Repeat",
+		"description": "Repeat"
 	},
 
 	"RepeatUntil": {
-		"prefix": ["repeat"],
+		"prefix": ["repeat until"],
 		"body": [
 			"repeat",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"until $1 end",
+			"until $1 end"
 		],
-		"description": "RepeatUntil",
+		"description": "RepeatUntil"
 	},
 
 	"When": {
@@ -89,19 +89,19 @@
 		"body": [
 			"when ${1} ${2|abort,reset|}",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "When",
+		"description": "When"
 	},
 
 	"While": {
-		"prefix": ["while"],
+		"prefix": ["while"],    
 		"body": [
 			"while ${1:<condition>} repeat",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "While",
+		"description": "While"
 	},
 
 	"Function": {
@@ -109,8 +109,45 @@
 		"body": [
 			"function ${1:newFunction} ($2) ($3)",
 			"\t${TM_SELECTED_TEXT:$0}",
-			"end",
+			"end"
 		],
-		"description": "Function",
-	},
+		"description": "Function"
+    },
+
+    "ExternVar":{
+        "prefix": ["extern var"],
+        "body":[
+            "@[COutput (binding =\"${3:<c-variable>}\", header = \"${4:<c-header>}.h\")]",
+            "extern var ${1:<id>}: ${2:<type>}"
+        ],
+        "description": "Bind to external read-only C variable"
+    },
+    
+    "ExternLet":{
+        "prefix": ["extern let"],
+        "body":[
+            "@[CInput (binding =\"${3:<c-variable>}\", header = \"${4:<c-header>}.h\")]",
+            "extern let ${1:<id>}: ${2:<type>}"
+        ],
+        "description": "Bind to external C variable"
+    },
+    
+    "ExternSingletonFunction":{
+        "prefix": ["extern singleton function"],
+        "body":[
+            "@[CFunction (binding =\"${4:<c-function>}\", header = \"${4:<c-header>}.h\")]",
+            "extern singleton function ${1:<name>} ($2) ($3)"
+        ],
+        "description": "Bind to impure C function "
+    },
+    
+    "ExternFunction":{
+        "prefix": ["extern function"],
+        "body":[
+            "@[CFunction (binding =\"${4:<c-function>}\", header = \"${4:<c-header>}.h\")]",
+            "extern function ${1:<name>} ($2) ($3)"
+        ],
+        "description": "Bind to pure C function"
+    }
+    
 }
